@@ -3,8 +3,8 @@
  * Plugin Name: SocialMediaEnhancer
  * Plugin URI: https://github.com/macx/SocialMediaEnhancer
  * Description: Smart social button integration and counter
- * Version: 1.8.6
- * Update: 2013-10-02
+ * Version: 2.0.0
+ * Update: 2013-10-16
  * Author: David Maciejewski
  * Author URI: http://macx.de
  * License: GPLv2 or later
@@ -26,9 +26,38 @@
  *	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+/**
+ * set contstants
+ */
+defined('ABSPATH') OR exit;
+
+define('SME_FILE', __FILE__);
+define('SME_FILE_SYMLINK', basename(dirname(__FILE__)) . DIRECTORY_SEPARATOR . basename(__FILE__)); // in symlinked environments
+define('SME_DIR', rtrim(dirname(__FILE__), '/\\') . DIRECTORY_SEPARATOR);
+define('SME_BASE', plugin_basename(SME_FILE_SYMLINK));
+
+/**
+ * Hooks
+ */
 add_action('init', array('SocialMediaEnhancer', 'init'));
 
-class SocialMediaEnhancer {
+/**
+ * load plugin classes
+ */
+spl_autoload_register('SocialMediaEnhancer_autoload');
+
+function SocialMediaEnhancer_autoload($class) {
+	if(in_array($class, array('SocialMediaEnhancer', 'SocialMediaEnhancer_Buttons', 'SocialMediaEnhancer_Options'))) {
+		require_once(sprintf('%s/classes/%s.class.php', dirname(__FILE__), $class));
+	}
+}
+
+
+
+
+#add_action('init', array('SocialMediaEnhancerx', 'init'));
+
+class SocialMediaEnhancerx {
 	#protected $pluginPath;
 
 	protected $pluginUrl;
@@ -90,8 +119,8 @@ class SocialMediaEnhancer {
 		if($this->options['general']['embed'] != 'disabled') {
 			$this->postContentModified = array();
 
-			add_filter('the_excerpt', array(&$this, 'addSocialButtonsToExcerpt'));
-			add_filter('get_the_excerpt', array(&$this, 'addSocialButtonsToExcerpt'));
+			#add_filter('the_excerpt', array(&$this, 'addSocialButtonsToExcerpt'));
+			#add_filter('get_the_excerpt', array(&$this, 'addSocialButtonsToExcerpt'));
 			add_filter('the_content', array(&$this, 'addSocialButtons'));
 		}
 
@@ -543,15 +572,35 @@ class SocialMediaEnhancer {
 	public function addSocialButtons($content = '', $isExcerpt = false) {
 		global $post;
 
-		if(!isset($post->socialInfo) || ($this->options['general']['embed'] == 'disabled') || isset($this->postContentModified[$post->ID]) || (($isExcerpt == false) && ($this->options['general']['embed'] == 'begin'))) {
-			return $content;
-		}
-
 		// get the button template
 		ob_start();
 		include 'templates/socialButtons.php';
 		$smeButtons = ob_get_contents();
 		ob_end_clean();
+
+		if($this->options['general']['embed'] == 'begin') {
+			$content = $smeButtons . $content;
+		} elseif($this->options['general']['embed'] == 'end') {
+			$content = $content . $smeButtons;
+		}
+
+		return $content;
+
+		/*
+
+		$content = 'XX ' . $content;
+
+		echo $this->options['general']['embed'] . '<br>';
+		echo 'isExcerpt: ' . $isExcerpt . '<br>';
+		echo '<pre style="background: black; color: yellow; padding: 1em; font-size: 12px; line-height: 16px; margin: 2em 0">' . print_r($post->socialInfo, true) . '</pre>';
+		echo '<pre style="background: darkblue; color: yellow; padding: 1em; font-size: 12px; line-height: 16px; margin: 2em 0">' . print_r($post->postContentModified, true) . '</pre>';
+
+		if(!isset($post->socialInfo) || ($this->options['general']['embed'] == 'disabled') || isset($this->postContentModified[$post->ID]) || (($isExcerpt == false) && ($this->options['general']['embed'] == 'begin'))) {
+			return $content;
+		}
+
+		$content = 'YY ' . $content;
+
 
 		if($this->options['general']['embed'] == 'begin') {
 			$content = $smeButtons . $content;
@@ -565,6 +614,7 @@ class SocialMediaEnhancer {
 		}
 
 		return $content;
+		*/
 	}
 
 	public function includeScripts() {

@@ -18,99 +18,101 @@
 			do_settings_sections('options');
 		?>
 
-		<h3>Allgemeine Einstellungen</h3>
+		<div class="smeOptionBox">
+			<h3>Allgemeine Einstellungen</h3>
 
-		<table class="form-table">
-			<tbody>
-				<tr valign="top">
-					<th scope="row">Anzuzeigende Dienste</th>
-					<td>
-						<fieldset>
-							<legend class="screen-reader-text"><span>Social-Media-Dienste</span></legend>
+			<table class="form-table">
+				<tbody>
+					<tr valign="top">
+						<th scope="row">Anzuzeigende Dienste</th>
+						<td>
+							<fieldset>
+								<legend class="screen-reader-text"><span>Social-Media-Dienste</span></legend>
 
-							<label for="service_google">
-								<input name="smeOptions[general][services][google]" type="checkbox" id="service_google" value="1"<?php if($this->options['general']['services']['google'] == 1) echo ' checked="checked"'; ?>>
-								Google+
+								<label for="service_google">
+									<input name="smeOptions[general][services][google]" type="checkbox" id="service_google" value="1"<?php if($options['general']['services']['google'] == 1) echo ' checked="checked"'; ?>>
+									Google+
+								</label><br>
+
+								<label for="service_facebook">
+									<input name="smeOptions[general][services][facebook]" type="checkbox" id="service_facebook" value="1"<?php if($options['general']['services']['facebook'] == 1) echo ' checked="checked"'; ?>>
+									Facebook
+								</label><br>
+
+								<label for="service_twitter">
+									<input name="smeOptions[general][services][twitter]" type="checkbox" id="service_twitter" value="1"<?php if($options['general']['services']['twitter'] == 1) echo ' checked="checked"'; ?>>
+									Twitter
+								</label><br>
+
+								<label for="service_linkedin">
+									<input name="smeOptions[general][services][linkedin]" type="checkbox" id="service_linkedin" value="1"<?php if($options['general']['services']['linkedin'] == 1) echo ' checked="checked"'; ?>>
+									LinkedIn*
+								</label><br>
+
+								<label for="service_pinterest">
+									<input name="smeOptions[general][services][pinterest]" type="checkbox" id="service_pinterest" value="1"<?php if($options['general']['services']['pinterest'] == 1) echo ' checked="checked"'; ?>>
+									Pinterest*
+								</label><br>
+
+								<label for="service_xing">
+									<input name="smeOptions[general][services][xing]" type="checkbox" id="service_xing" value="1"<?php if($options['general']['services']['xing'] == 1) echo ' checked="checked"'; ?>>
+									XING*
+								</label><br>
+
+								<p class="description">Von jedem aktivierten Dienst wird der Teilen-Button auf auf der Webseite angezeigt. Zusätzlich
+								werden von dem jeweiligen Dienst die aktuellen Zahlen abgerufen.</p>
+
+								<p><em>*) Die Buttons werden in einer der nächsten Versionen nachgeliefert.</em></p>
+							</fieldset>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th scope="row">Button-Design</th>
+						<td>
+							<select name="smeOptions[general][style]">
+								<option value="sme"<?php if($options['general']['style'] == 'sme') echo ' selected="selected"'; ?>>Buttons</option>
+								<option value="flat"<?php if($options['general']['style'] == 'flat') echo ' selected="selected"'; ?>>Flat-Design</option>
+								<option value="light"<?php if($options['general']['style'] == 'light') echo ' selected="selected"'; ?>>Klassisch (für helle Hintergründe)</option>
+								<option value="dark"<?php if($options['general']['style'] == 'dark') echo ' selected="selected"'; ?>>Klassisch (für dunkele Hintergründe)</option>
+							</select><br>
+
+							<p>
+								<label for="general_label">
+								<input name="smeOptions[general][label]" type="checkbox" id="general_label" value="1"<?php if($options['general']['label'] == 1) echo ' checked="checked"'; ?>>
+									Dienste-Namen anzeigen <i>(nicht bei den klassischen Buttons)</i>
+								</label>
+							</p>
+
+							<p class="description">Bestimmt das Aussehen der Buttons.</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th scope="row">Platzierung der Buttons</th>
+						<td>
+							<select name="smeOptions[general][embed]">
+								<option value="begin"<?php if($options['general']['embed'] == 'begin') echo ' selected="selected"'; ?>>Am Anfang jedes Artikels (empfohlen)</option>
+								<option value="end"<?php if($options['general']['embed'] == 'end') echo ' selected="selected"'; ?>>Am Ende jedes Artikels</option>
+								<option value="disabled"<?php if($options['general']['embed'] == 'disabled') echo ' selected="selected"'; ?>>Manuelle Einbindung</option>
+							</select><br>
+
+							<p class="description">Wenn Sie manuelle Einbindung wählen, fügen Sie den Marker <code>[socialMediaEnhancer]</code> in den
+							Quelltext ein.</p>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th scope="row">Metainformationen</th>
+						<td>
+							<label for="general_opengraph">
+								<input name="smeOptions[general][opengraph][disable]" type="checkbox" id="general_opengraph" value="1"<?php if($options['general']['opengraph']['disable'] == 1) echo ' checked="checked"'; ?>>
+								Open-Graph-Metainformationen deaktivieren <i>(nicht empfohlen)</i>
 							</label><br>
 
-							<label for="service_facebook">
-								<input name="smeOptions[general][services][facebook]" type="checkbox" id="service_facebook" value="1"<?php if($this->options['general']['services']['facebook'] == 1) echo ' checked="checked"'; ?>>
-								Facebook
-							</label><br>
-
-							<label for="service_twitter">
-								<input name="smeOptions[general][services][twitter]" type="checkbox" id="service_twitter" value="1"<?php if($this->options['general']['services']['twitter'] == 1) echo ' checked="checked"'; ?>>
-								Twitter
-							</label><br>
-
-							<label for="service_linkedin">
-								<input name="smeOptions[general][services][linkedin]" type="checkbox" id="service_linkedin" value="1"<?php if($this->options['general']['services']['linkedin'] == 1) echo ' checked="checked"'; ?>>
-								LinkedIn*
-							</label><br>
-
-							<label for="service_pinterest">
-								<input name="smeOptions[general][services][pinterest]" type="checkbox" id="service_pinterest" value="1"<?php if($this->options['general']['services']['pinterest'] == 1) echo ' checked="checked"'; ?>>
-								Pinterest*
-							</label><br>
-
-							<label for="service_xing">
-								<input name="smeOptions[general][services][xing]" type="checkbox" id="service_xing" value="1"<?php if($this->options['general']['services']['xing'] == 1) echo ' checked="checked"'; ?>>
-								XING*
-							</label><br>
-
-							<p class="description">Von jedem aktivierten Dienst wird der Teilen-Button auf auf der Webseite angezeigt. Zusätzlich
-							werden von dem jeweiligen Dienst die aktuellen Zahlen abgerufen.</p>
-
-							<p><em>*) Die Buttons werden in einer der nächsten Versionen nachgeliefert.</em></p>
-						</fieldset>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">Button-Design</th>
-					<td>
-						<select name="smeOptions[general][style]">
-							<option value="sme"<?php if($this->options['general']['style'] == 'sme') echo ' selected="selected"'; ?>>Buttons</option>
-							<option value="flat"<?php if($this->options['general']['style'] == 'flat') echo ' selected="selected"'; ?>>Flat-Design</option>
-							<option value="light"<?php if($this->options['general']['style'] == 'light') echo ' selected="selected"'; ?>>Klassisch (für helle Hintergründe)</option>
-							<option value="dark"<?php if($this->options['general']['style'] == 'dark') echo ' selected="selected"'; ?>>Klassisch (für dunkele Hintergründe)</option>
-						</select><br>
-
-						<p>
-							<label for="general_label">
-							<input name="smeOptions[general][label]" type="checkbox" id="general_label" value="1"<?php if($this->options['general']['label'] == 1) echo ' checked="checked"'; ?>>
-								Dienste-Namen anzeigen <i>(nicht bei den klassischen Buttons)</i>
-							</label>
-						</p>
-
-						<p class="description">Bestimmt das Aussehen der Buttons.</p>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">Platzierung der Buttons</th>
-					<td>
-						<select name="smeOptions[general][embed]">
-							<option value="begin"<?php if($this->options['general']['embed'] == 'begin') echo ' selected="selected"'; ?>>Am Anfang jedes Artikels (empfohlen)</option>
-							<option value="end"<?php if($this->options['general']['embed'] == 'end') echo ' selected="selected"'; ?>>Am Ende jedes Artikels</option>
-							<option value="disabled"<?php if($this->options['general']['embed'] == 'disabled') echo ' selected="selected"'; ?>>Manuelle Einbindung</option>
-						</select><br>
-
-						<p class="description">Wenn Sie manuelle Einbindung wählen, fügen Sie den Marker <code>[socialMediaEnhancer]</code> in den
-						Quelltext ein.</p>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">Metainformationen</th>
-					<td>
-						<label for="general_opengraph">
-							<input name="smeOptions[general][opengraph][disable]" type="checkbox" id="general_opengraph" value="1"<?php if($this->options['general']['opengraph']['disable'] == 1) echo ' checked="checked"'; ?>>
-							Open-Graph-Metainformationen deaktivieren <i>(nicht empfohlen)</i>
-						</label><br>
-
-						<p class="description">Der SocialMediaManager fügt der Seite optionale Metainformationen hinzu, damit die Netzwerke die optimalen Daten zum Teilen Ihrer Inhalte verwenden.</p>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+							<p class="description">Der SocialMediaManager fügt der Seite optionale Metainformationen hinzu, damit die Netzwerke die optimalen Daten zum Teilen Ihrer Inhalte verwenden.</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		
 		<br>
 
@@ -126,7 +128,7 @@
 						<small>(Vollständige URL)</small>
 					</th>
 					<td>
-						<input type="text" name="smeOptions[accounts][google]" value="<?php echo $this->options['accounts']['google']; ?>" class="regular-text ltr" placeholder="https://plus.google.com/102458928073783517690" />
+						<input type="text" name="smeOptions[accounts][google]" value="<?php echo $options['accounts']['google']; ?>" class="regular-text ltr" placeholder="https://plus.google.com/102458928073783517690" />
 					</td>
 				</tr>
 				<tr valign="top">
@@ -135,7 +137,7 @@
 						<small>(Vollständige URL)</small>
 					</th>
 					<td>
-						<input type="text" name="smeOptions[accounts][facebook]" value="<?php echo $this->options['accounts']['facebook']; ?>" class="regular-text ltr" placeholder="https://www.facebook.com/dmacx" />
+						<input type="text" name="smeOptions[accounts][facebook]" value="<?php echo $options['accounts']['facebook']; ?>" class="regular-text ltr" placeholder="https://www.facebook.com/dmacx" />
 					</td>
 				</tr>
 				<tr valign="top">
@@ -144,7 +146,7 @@
 						<small>(without @)</small>
 					</th>
 					<td>
-						<input type="text" name="smeOptions[accounts][twitter]" value="<?php echo $this->options['accounts']['twitter']; ?>" class="regular-text ltr" placeholder="macx" />
+						<input type="text" name="smeOptions[accounts][twitter]" value="<?php echo $options['accounts']['twitter']; ?>" class="regular-text ltr" placeholder="macx" />
 					</td>
 				</tr>
 			</tbody>
