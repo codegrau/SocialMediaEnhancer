@@ -1,0 +1,31 @@
+{
+  "name": "SocialMediaEnhancer",
+  "version": "2.0.0",
+  "description": "WordPress Plugin to enhance the blog with perfect SocialMedia Data and Sharing Options",
+  "main": "gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:macx/SocialMediaEnhancer.gitt"
+  },
+  "author": "David Maciejewski",
+  "license": "MIT",
+  "bugs": {
+    "url": "ttps://github.com/macx/SocialMediaEnhancer/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-cssmin": "~0.8.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-sass": "~0.10.0",
+    "load-grunt-tasks": "~0.3.0",
+    "grunt-browser-sync": "~0.6.0"
+  }
+}

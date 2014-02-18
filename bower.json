@@ -1,0 +1,20 @@
+{
+  "name": "SocialMediaEnhancer",
+  "version": "1.9.0",
+  "homepage": "https://github.com/macx/SocialMediaEnhancer",
+  "authors": [
+    "David Maciejewski <macx@macx.de>"
+  ],
+  "description": "WordPress Plugin to enhance the blog with perfect SocialMedia Data and Sharing Options",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+  }
+}
